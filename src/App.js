@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="w-[1440px] border border-red-500 mx-auto">
       <h1>Assignment 12</h1>
     </div>
   );
