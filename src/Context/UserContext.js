@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import { getAuth } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 
-const AuthProvider = createContext();
+export const AuthProvider = createContext();
 const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
