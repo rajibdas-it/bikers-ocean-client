@@ -30,7 +30,7 @@ const Header = () => {
     </>
   );
   return (
-    <div className="navbar ">
+    <div className="navbar border border-green-600 ">
       <div className="navbar-start lg:navbar-center">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
