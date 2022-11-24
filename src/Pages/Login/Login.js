@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/bo_logo.png";
+import { AuthContext } from "../../Context/UserContext";
 
 const Login = () => {
+  const { googleSignIn, userLogin } = useContext(AuthContext);
+
+  const handleUserSignIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+    userLogin(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="w-full md:w-96 lg:h-[800px] border border-red-500 mx-auto mt-5">
       <div className="card w-full bg-base-100 shadow-xl mx-auto my-10 m-2">
@@ -11,7 +28,7 @@ const Login = () => {
         </figure>
         <div className="items-center text-center p-5">
           <h2 className="text-center text-3xl font-bold">Login!</h2>
-          <form>
+          <form onSubmit={handleUserSignIn}>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Email*</span>
