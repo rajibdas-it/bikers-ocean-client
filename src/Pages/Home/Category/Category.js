@@ -22,7 +22,11 @@ const Category = () => {
 
       <div className="card w-full bg-base-100 shadow-xl image-full rounded-none">
         <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          <img
+            src="https://placeimg.com/400/225/arch"
+            className="w-full"
+            alt="Shoes"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">Sports Bike!</h2>
@@ -34,7 +38,11 @@ const Category = () => {
       </div>
       <div className="card w-full bg-base-100 shadow-xl image-full rounded-none">
         <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          <img
+            src="https://placeimg.com/400/225/arch"
+            alt="Shoes"
+            className="w-full"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">Sports Bike!</h2>
@@ -46,7 +54,11 @@ const Category = () => {
       </div>
       <div className="card w-full bg-base-100 shadow-xl image-full rounded-none">
         <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          <img
+            src="https://placeimg.com/400/225/arch"
+            alt="Shoes"
+            className="w-full"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">Sports Bike!</h2>
