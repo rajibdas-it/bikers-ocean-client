@@ -1,10 +1,18 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
   const { googleSignIn, userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleUserSignIn = (event) => {
     event.preventDefault();
@@ -15,7 +23,34 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         const user = result.user;
+        setUserEmail(email);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleGooleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
         console.log(user);
+        fetch("http://localhost:5000/users", {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+            role: "user",
+            status: "not verified",
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              // alert("User Created Successfully");
+              setUserEmail(user?.email);
+            }
+          });
       })
       .catch((err) => console.log(err));
   };
@@ -63,7 +98,10 @@ const Login = () => {
           </form>
           <div className="divider">OR</div>
           <div className="card-actions justify-center">
-            <button className="btn btn-wide bg-black">
+            <button
+              onClick={handleGooleSignUp}
+              className="btn btn-wide bg-black"
+            >
               <svg
                 viewBox="0 0 24 24"
                 width="24"

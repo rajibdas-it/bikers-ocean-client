@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
+import useToken from "../../Hooks/useToken";
 
 const Register = () => {
   const { userRegistration, googleSignIn, updateUserInfo, user } =
     useContext(AuthContext);
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const navigate = useNavigate();
+  const [token] = useToken(createdUserEmail);
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleUserSignUp = (event) => {
     event.preventDefault();
@@ -19,9 +27,9 @@ const Register = () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    const uri = `https://api.imgbb.com/1/upload?key=c777b9c0381e8aaf0936909d99159896`;
+    const url = `https://api.imgbb.com/1/upload?key=c777b9c0381e8aaf0936909d99159896`;
 
-    fetch(uri, {
+    fetch(url, {
       method: "POST",
       body: formData,
     })
@@ -33,12 +41,12 @@ const Register = () => {
               updateUserInfo(userName, imgData.data.url)
                 .then((result) => {
                   fetch("http://localhost:5000/users", {
-                    method: "POST",
+                    method: "PUT",
                     headers: {
                       "content-type": "application/json",
                     },
                     body: JSON.stringify({
-                      userEmail: email,
+                      email: email,
                       role,
                       status: "not verified",
                     }),
@@ -47,6 +55,7 @@ const Register = () => {
                     .then((data) => {
                       if (data.acknowledged) {
                         alert("User Created Successfully");
+                        setCreatedUserEmail(email);
                       }
                     });
                 })
@@ -61,10 +70,29 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        fetch("http://localhost:5000/users", {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+            role: "user",
+            status: "not verified",
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              alert("User Created Successfully");
+              setCreatedUserEmail(user?.email);
+            }
+          });
       })
       .catch((err) => console.log(err));
   };
-  console.log(user);
+  // console.log(user);
+
   return (
     <div className="w-full md:w-96 lg:h-[800px] border border-red-500 mx-auto mt-5">
       <div className="card w-full bg-base-100 shadow-xl mx-auto my-10 m-2">
@@ -122,7 +150,7 @@ const Register = () => {
               </label>
               <input
                 type="file"
-                className="file-input file-input-bordered w-full"
+                className="file-input file-input-bordered file-input-error w-full text-black"
                 name="image"
                 accept="image/*"
                 required
@@ -132,7 +160,7 @@ const Register = () => {
             <div className="card-actions justify-center mt-5">
               <input
                 type="submit"
-                value="Login"
+                value="Register"
                 className="btn btn-wide bg-black"
               />
             </div>
