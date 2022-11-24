@@ -21,11 +21,11 @@ const Header = () => {
       </li>
 
       <li>
-        <Link to="/">Login</Link>
+        <Link to="/login">Login</Link>
       </li>
 
       <li>
-        <Link to="/">Logout</Link>
+        <Link to="/signup">Logout</Link>
       </li>
     </>
   );

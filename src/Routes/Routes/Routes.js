@@ -5,6 +5,8 @@ import CreateCategory from "../../Pages/DashboardPages/CreateCategory/CreateCate
 import Dashboard from "../../Pages/DashboardPages/Dashboard/Dashboard";
 import ViewCategory from "../../Pages/DashboardPages/ViewCategory/ViewCategory";
 import Home from "../../Pages/Home/Home/Home";
+import Login from "../../Pages/Login/Login";
+import Register from "../../Pages/Register/Register";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +15,8 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home></Home> },
       { path: "/home", element: <Home></Home> },
-      { path: "/create-category", element: <></> },
+      { path: "/login", element: <Login></Login> },
+      { path: "/signup", element: <Register></Register> },
     ],
   },
   {
