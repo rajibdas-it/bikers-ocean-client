@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
 import useToken from "../../Hooks/useToken";
@@ -7,11 +7,13 @@ import useToken from "../../Hooks/useToken";
 const Login = () => {
   const { googleSignIn, userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [userEmail, setUserEmail] = useState("");
   const [token] = useToken(userEmail);
+  const from = location.state?.from?.pathname || "/";
 
   if (token) {
-    navigate("/");
+    navigate(from, { replace: true });
   }
 
   const handleUserSignIn = (event) => {

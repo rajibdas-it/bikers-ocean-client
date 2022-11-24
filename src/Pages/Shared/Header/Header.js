@@ -1,8 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/bo_logo.png";
+import { AuthContext } from "../../../Context/UserContext";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/login");
+      })
+      .catch(() => {});
+  };
   const menuItem = (
     <>
       <li>
@@ -20,13 +30,15 @@ const Header = () => {
         <Link to="/dashboard">Dashboard</Link>
       </li>
 
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-
-      <li>
-        <Link to="/signup">Logout</Link>
-      </li>
+      {!user?.email ? (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      ) : (
+        <li>
+          <button onClick={handleLogOut}>Logout</button>
+        </li>
+      )}
     </>
   );
   return (
