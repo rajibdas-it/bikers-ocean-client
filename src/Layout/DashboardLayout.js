@@ -6,26 +6,11 @@ const DashboardLayout = () => {
   const menuItem = (
     <>
       <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/">My Orders</Link>
+        <Link to="/dashboard/create-category">Create New Category</Link>
       </li>
 
       <li>
-        <Link to="/">Contact Us</Link>
-      </li>
-
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
-
-      <li>
-        <Link to="/">Login</Link>
-      </li>
-
-      <li>
-        <Link to="/">Logout</Link>
+        <Link to="/dashboard/view-all-category">View All Category</Link>
       </li>
     </>
   );
