@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/bo_logo.png";
+import { AuthContext } from "../../Context/UserContext";
 
 const Register = () => {
+  const { userRegistration, googleSignIn } = useContext(AuthContext);
+
+  const handleUserSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const userName = form.username.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.value;
+    const role = form.role.value;
+    // console.log(userName, email, password, image, role);
+
+    userRegistration(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleGooleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="w-full md:w-96 lg:h-[800px] border border-red-500 mx-auto mt-5">
       <div className="card w-full bg-base-100 shadow-xl mx-auto my-10 m-2">
@@ -11,7 +40,7 @@ const Register = () => {
         </figure>
         <div className="items-center text-center p-5">
           <h2 className="text-center text-3xl font-bold">Register!</h2>
-          <form>
+          <form onSubmit={handleUserSignUp}>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Username*</span>
@@ -49,10 +78,7 @@ const Register = () => {
               <label className="label">
                 <span className="label-text">User Type</span>
               </label>
-              <select
-                name="user-type"
-                className="select select-bordered w-full"
-              >
+              <select name="role" className="select select-bordered w-full">
                 <option value="user">User</option>
                 <option value="seller">Seller</option>
               </select>
@@ -79,7 +105,10 @@ const Register = () => {
           </form>
           <div className="divider">OR</div>
           <div className="card-actions justify-center">
-            <button className="btn btn-wide bg-black">
+            <button
+              className="btn btn-wide bg-black"
+              onClick={handleGooleSignUp}
+            >
               <svg
                 viewBox="0 0 24 24"
                 width="24"

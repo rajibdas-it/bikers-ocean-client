@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 
-export const AuthProvider = createContext();
+export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
@@ -36,10 +36,12 @@ const UserContext = ({ children }) => {
   };
 
   const updateUserInfo = (userInfo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, userInfo);
   };
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -62,7 +64,7 @@ const UserContext = ({ children }) => {
   };
   return (
     <div>
-      <AuthProvider.Provider value={authInfo}>{children}</AuthProvider.Provider>
+      <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     </div>
   );
 };
