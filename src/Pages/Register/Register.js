@@ -4,25 +4,57 @@ import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
 
 const Register = () => {
-  const { userRegistration, googleSignIn } = useContext(AuthContext);
+  const { userRegistration, googleSignIn, updateUserInfo, user } =
+    useContext(AuthContext);
 
   const handleUserSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
-
     const userName = form.username.value;
     const email = form.email.value;
     const password = form.password.value;
-    const image = form.image.value;
     const role = form.role.value;
     // console.log(userName, email, password, image, role);
+    const image = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
 
-    userRegistration(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((err) => console.log(err));
+    const uri = `https://api.imgbb.com/1/upload?key=c777b9c0381e8aaf0936909d99159896`;
+
+    fetch(uri, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          userRegistration(email, password)
+            .then((result) => {
+              updateUserInfo(userName, imgData.data.url)
+                .then((result) => {
+                  fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      userEmail: email,
+                      role,
+                      status: "not verified",
+                    }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      if (data.acknowledged) {
+                        alert("User Created Successfully");
+                      }
+                    });
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
+        }
+      });
   };
   const handleGooleSignUp = () => {
     googleSignIn()
@@ -32,6 +64,7 @@ const Register = () => {
       })
       .catch((err) => console.log(err));
   };
+  console.log(user);
   return (
     <div className="w-full md:w-96 lg:h-[800px] border border-red-500 mx-auto mt-5">
       <div className="card w-full bg-base-100 shadow-xl mx-auto my-10 m-2">
@@ -91,6 +124,7 @@ const Register = () => {
                 type="file"
                 className="file-input file-input-bordered w-full"
                 name="image"
+                accept="image/*"
                 required
               />
             </div>
