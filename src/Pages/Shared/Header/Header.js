@@ -18,17 +18,24 @@ const Header = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/">My Orders</Link>
-      </li>
 
       <li>
-        <Link to="/">Contact Us</Link>
+        <Link to="/blogs">Blogs</Link>
       </li>
 
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+      {user?.email && (
+        <>
+          <li>
+            <Link to="/mywishlist">Wish List</Link>
+          </li>
+          <li>
+            <Link to="/myorders">My Orders</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </>
+      )}
 
       {!user?.email ? (
         <li>

@@ -1,0 +1,37 @@
+[
+  {
+    "categoryId": "63805e436da9ff0205e86a97",
+    "categoryName": "Standard Bike",
+    "productName": "Suzuki Gixxer 150",
+    "price": 150000,
+    "sellerEmail": "noxeyox568@kuvasin.com"
+  },
+  {
+    "categoryId": "63805e436da9ff0205e86a97",
+    "categoryName": "Suzuki Gixxer SF",
+    "productName": "Suzuki Gixxer 150",
+    "price": 150000,
+    "sellerEmail": "noxeyox568@kuvasin.com"
+  },
+  {
+    "categoryId": "63805e436da9ff0205e86a98",
+    "categoryName": "Sports Bike",
+    "productName": "Pulsar 125",
+    "price": 150000,
+    "sellerEmail": "noxeyox568@kuvasin.com"
+  },
+  {
+    "categoryId": "63805e436da9ff0205e86a98",
+    "categoryName": "Standard Bike",
+    "productName": "Hero Hunk",
+    "price": 150000,
+    "sellerEmail": "noxeyox568@kuvasin.com"
+  },
+  {
+    "categoryId": "63805e436da9ff0205e86a99",
+    "categoryName": "Standard Bike",
+    "productName": "CBR 150",
+    "price": 150000,
+    "sellerEmail": "noxeyox568@kuvasin.com"
+  }
+]

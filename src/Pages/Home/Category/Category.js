@@ -1,70 +1,44 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Category = () => {
+const Category = ({ category }) => {
+  console.log(category);
   return (
     <>
-      {/* <div className="card card-compact w-full bg-base-100 shadow-xl rounded-none">
-        <figure className="rounded-none">
-          <img
-            src="https://placeimg.com/400/225/arch"
-            className="w-full"
-            alt="Shoes"
-          />
-        </figure>
+      {/* <div className="card w-full bg-primary text-primary-content">
         <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <h2 className="card-title">{category?.categoryName}</h2>
+          <p>{category.descriptions}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Show All</button>
+            <Link to={`/category/${category?._id}`}>
+              <button className="btn">See All</button>
+            </Link>
           </div>
         </div>
       </div> */}
 
-      <div className="card w-full bg-base-100 shadow-xl image-full rounded-none">
-        <figure>
+      <div className="card w-full bg-base-100 shadow-xl image-full">
+        <figure
+          style={{
+            backgroundColor: "rgba(0,0,0,0.9)",
+            backgroundBlendMode: "overlay",
+          }}
+        >
           <img
-            src="https://placeimg.com/400/225/arch"
-            className="w-full"
-            alt="Shoes"
+            src={category?.image}
+            className="w-full opacity-[0.5]"
+            alt={category?.name}
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Sports Bike!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <h2 className="card-title text-primary font-bold text-2xl">
+            {category?.categoryName}
+          </h2>
+          <p className="text-white">{category.descriptions}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">See All</button>
-          </div>
-        </div>
-      </div>
-      <div className="card w-full bg-base-100 shadow-xl image-full rounded-none">
-        <figure>
-          <img
-            src="https://placeimg.com/400/225/arch"
-            alt="Shoes"
-            className="w-full"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Sports Bike!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">See All</button>
-          </div>
-        </div>
-      </div>
-      <div className="card w-full bg-base-100 shadow-xl image-full rounded-none">
-        <figure>
-          <img
-            src="https://placeimg.com/400/225/arch"
-            alt="Shoes"
-            className="w-full"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Sports Bike!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">See All</button>
+            <Link to={`/category/${category?._id}`}>
+              <button className="btn btn-primary">See All</button>
+            </Link>
           </div>
         </div>
       </div>

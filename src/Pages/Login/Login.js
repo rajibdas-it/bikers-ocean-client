@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
@@ -12,9 +12,11 @@ const Login = () => {
   const [token] = useToken(userEmail);
   const from = location.state?.from?.pathname || "/";
 
-  if (token) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
 
   const handleUserSignIn = (event) => {
     event.preventDefault();
