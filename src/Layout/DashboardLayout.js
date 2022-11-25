@@ -18,6 +18,21 @@ const DashboardLayout = () => {
       <li>
         <Link to="/dashboard/view-all-product">View All Product</Link>
       </li>
+      <li>
+        <Link to="/dashboard/">All Buyer</Link>
+      </li>
+      <li>
+        <Link to="/dashboard/">All Seller</Link>
+      </li>
+      <li>
+        <Link to="/dashboard/">Reported Items</Link>
+      </li>
+      <li>
+        <Link to="/dashboard/">My Orders</Link>
+      </li>
+      <li>
+        <Link to="/dashboard/">My Wishlist</Link>
+      </li>
     </>
   );
   return (
