@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/UserContext";
 import moment from "moment/moment";
-const OrderModal = ({ bookingItem }) => {
+import { toast } from "react-toastify";
+const OrderModal = ({ bookingItem, setBookingItem }) => {
   const { user } = useContext(AuthContext);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
 
@@ -31,7 +32,6 @@ const OrderModal = ({ bookingItem }) => {
     const phone = form.phoneNo.value;
     const price = form.price.value;
     const meetingLocation = form.meetingLocation.value;
-
     const booking = {
       date: currentDate,
       name,
@@ -47,7 +47,24 @@ const OrderModal = ({ bookingItem }) => {
       sellerEmail,
       sellerPhone,
     };
-    console.log(booking);
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success(
+            `Congratulations ${user.displayName}! Your Booking is Confirm`,
+            { autoClose: 1500 }
+          );
+          setBookingItem(null);
+        }
+      });
   };
   return (
     <div>

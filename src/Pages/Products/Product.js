@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Context/UserContext";
 import OrderModal from "./OrderModal";
+import { FaHeart, FaUserSecret } from "react-icons/fa";
 
 const Product = ({ productDetails }) => {
   const { user } = useContext(AuthContext);
@@ -64,18 +65,25 @@ const Product = ({ productDetails }) => {
           <div className="grid grid-cols-1 gap-2 justify-start">
             <div className="badge badge-outline">Cell: {sellerPhone}</div>
             <div className="badge badge-outline">
-              Buying Price ${buyingPrice}
+              Buying Price: ${buyingPrice}
             </div>
             <div className="badge badge-outline">
-              Sale Price ${sellingPrice}
+              Sale Price: ${sellingPrice}
             </div>
-            <div className="badge badge-outline">Year-{purchaseYear}</div>
-            <div className="badge badge-outline">Condition-{condition}</div>
+            <div className="badge badge-outline">
+              Purchase Year: {purchaseYear}
+            </div>
+            <div className="badge badge-outline">Condition: {condition}</div>
             <div className="badge badge-outline">Location: {location}</div>
           </div>
           <p>{descriptions}</p>
           <div className="card-actions justify-end">
-            {/* <button className="btn btn-primary">Order Now</button> */}
+            <button className="btn btn-secondary" title="Wishlist">
+              <FaHeart className="h-6 w-6 text-orange-400"></FaHeart>
+            </button>
+            <button className="btn btn-secondary" title="Report To Admin">
+              <FaUserSecret className="h-8 w-8"></FaUserSecret>
+            </button>
             <label
               htmlFor="order-modal"
               className="btn btn-primary"
@@ -86,7 +94,12 @@ const Product = ({ productDetails }) => {
           </div>
         </div>
       </div>
-      {bookingItem && <OrderModal bookingItem={bookingItem}></OrderModal>}
+      {bookingItem && (
+        <OrderModal
+          bookingItem={bookingItem}
+          setBookingItem={setBookingItem}
+        ></OrderModal>
+      )}
     </div>
   );
 };
