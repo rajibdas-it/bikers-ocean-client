@@ -24,7 +24,7 @@ const AddNewProduct = () => {
     const purchaseYear = form.purchaseYear.value;
     const condition = form.condition.value;
     const sellerPhone = form.sellerPhone.value;
-    const location = form.sellerPhone.value;
+    const location = form.location.value;
     const descriptions = form.descriptions.value;
 
     const image = form.image.files[0];
@@ -59,6 +59,7 @@ const AddNewProduct = () => {
               location, // from input field
               descriptions, // from input field
               image: imgData.data.url, // from api
+              status: "available",
             }),
           })
             .then((res) => res.json())
