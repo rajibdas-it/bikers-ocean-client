@@ -4,10 +4,10 @@ import moment from "moment/moment";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import Swal from "sweetalert2";
+import Loader from "../../Shared/Loader/Loader";
 
 const ManageSeller = () => {
   const { user } = useContext(AuthContext);
-  const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   const {
     data: sellers = [],
     isLoading,
@@ -18,6 +18,9 @@ const ManageSeller = () => {
       fetch("http://localhost:5000/allSeller").then((res) => res.json()),
   });
 
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
   // console.log(products);
 
   const handleVerifySeller = (seller) => {

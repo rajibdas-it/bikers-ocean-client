@@ -25,10 +25,10 @@ const Header = () => {
 
       {user?.email && (
         <>
-          {/* <li>
+          <li>
             <Link to="/mywishlist">Wish List</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/myorders">My Orders</Link>
           </li> */}
           <li>

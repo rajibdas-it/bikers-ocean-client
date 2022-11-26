@@ -3,12 +3,18 @@ import axios from "axios";
 import { AuthContext } from "../../Context/UserContext";
 import OrderModal from "./OrderModal";
 import { FaHeart, FaUserSecret } from "react-icons/fa";
+import moment from "moment/moment";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({ productDetails }) => {
   const { user } = useContext(AuthContext);
   const [sellerInfo, setSellerInfo] = useState("");
   const [bookingItem, setBookingItem] = useState(null);
+  const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+  const navigate = useNavigate("");
   const {
+    _id,
     categoryId,
     buyingPrice,
     condition,
@@ -47,6 +53,34 @@ const Product = ({ productDetails }) => {
 
   //   console.log(bookingItem);
 
+  const handleAddWishList = (productDetails) => {
+    const wishedItem = {
+      date: currentDate,
+      productName,
+      productId: _id,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      sellerName,
+      sellerEmail,
+      price: sellingPrice,
+    };
+
+    fetch("http://localhost:5000/mywishlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishedItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Product added in your wishlist page.");
+          navigate("/mywishlist");
+        }
+      });
+  };
+
   return (
     <div>
       <div className="card w-full bg-base-100 shadow-xl">
@@ -80,7 +114,11 @@ const Product = ({ productDetails }) => {
           </div>
           <p>{descriptions}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-secondary" title="Wishlist">
+            <button
+              onClick={() => handleAddWishList(productDetails)}
+              className="btn btn-secondary"
+              title="Wishlist"
+            >
               <FaHeart className="h-6 w-6 text-orange-400"></FaHeart>
             </button>
             <button className="btn btn-secondary" title="Report To Admin">

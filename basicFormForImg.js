@@ -17,3 +17,6 @@ const handleAddCategory = (event) => {
       console.log(imgData);
     });
 };
+
+import moment from "moment/moment";
+const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");

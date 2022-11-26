@@ -30,9 +30,9 @@ const DashboardLayout = () => {
       <li>
         <Link to="/dashboard/myorders">My Orders</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/dashboard/mywishlist">My Wishlist</Link>
-      </li>
+      </li> */}
     </>
   );
   return (
