@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../Context/UserContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import Loader from "../Shared/Loader/Loader";
 
 const WishList = () => {
   const { user } = useContext(AuthContext);
@@ -17,6 +18,10 @@ const WishList = () => {
         (res) => res.json()
       ),
   });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   const handleDeleteWishItem = (wishedItem) => {
     // console.log(wishedItem);

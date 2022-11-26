@@ -80,6 +80,32 @@ const Product = ({ productDetails }) => {
         }
       });
   };
+  const handleReportToAdmin = (productDetails) => {
+    const reportedItem = {
+      date: currentDate,
+      productId: productDetails._id,
+      productName: productDetails.productName,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      sellerName: productDetails.sellerName,
+      sellerEmail: productDetails.sellerEmail,
+    };
+
+    fetch("http://localhost:5000/reportedItems", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reportedItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Reported to Admin.");
+          navigate("/");
+        }
+      });
+  };
 
   return (
     <div>
@@ -121,7 +147,11 @@ const Product = ({ productDetails }) => {
             >
               <FaHeart className="h-6 w-6 text-orange-400"></FaHeart>
             </button>
-            <button className="btn btn-secondary" title="Report To Admin">
+            <button
+              onClick={() => handleReportToAdmin(productDetails)}
+              className="btn btn-secondary"
+              title="Report To Admin"
+            >
               <FaUserSecret className="h-8 w-8"></FaUserSecret>
             </button>
             <label
