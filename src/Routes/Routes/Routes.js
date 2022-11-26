@@ -10,11 +10,14 @@ import ViewCategory from "../../Pages/DashboardPages/ViewCategory/ViewCategory";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
-import MyOrders from "../../Pages/MyOrders/MyOrders";
+import MyOrders from "../../Pages/DashboardPages/MyOrders/MyOrders";
 import Products from "../../Pages/Products/Products";
 import Register from "../../Pages/Register/Register";
-import WishList from "../../Pages/WishList/WishList";
+import WishList from "../../Pages/DashboardPages/WishList/WishList";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ManageUsers from "../../Pages/DashboardPages/ManageUsers/ManageUsers";
+import ManageSeller from "../../Pages/DashboardPages/ManageSeller/ManageSeller";
+import ReportedProducts from "../../Pages/DashboardPages/ReportedProducts/ReportedProducts";
 
 export const router = createBrowserRouter([
   {
@@ -36,22 +39,6 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Products></Products>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/myorders",
-        element: (
-          <PrivateRoute>
-            <MyOrders></MyOrders>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/mywishlist",
-        element: (
-          <PrivateRoute>
-            <WishList></WishList>
           </PrivateRoute>
         ),
       },
@@ -77,6 +64,34 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/view-all-product",
         element: <ViewAllProducts></ViewAllProducts>,
+      },
+      {
+        path: "/dashboard/manage-users",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "/dashboard/manage-sellers",
+        element: <ManageSeller></ManageSeller>,
+      },
+      {
+        path: "/dashboard/reported-products",
+        element: <ReportedProducts></ReportedProducts>,
+      },
+      {
+        path: "/dashboard/myorders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/mywishlist",
+        element: (
+          <PrivateRoute>
+            <WishList></WishList>
+          </PrivateRoute>
+        ),
       },
     ],
   },

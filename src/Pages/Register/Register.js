@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
 import useToken from "../../Hooks/useToken";
@@ -47,6 +48,8 @@ const Register = () => {
                       "content-type": "application/json",
                     },
                     body: JSON.stringify({
+                      userName: userName,
+                      image: imgData?.data?.url,
                       email: email,
                       role,
                       status: "not verified",
@@ -55,7 +58,10 @@ const Register = () => {
                     .then((res) => res.json())
                     .then((data) => {
                       if (data.acknowledged) {
-                        alert("User Created Successfully");
+                        // alert("User Created Successfully");
+                        toast.success("User Created Successfully", {
+                          autoClose: 1500,
+                        });
                         setCreatedUserEmail(email);
                       }
                     });
@@ -78,6 +84,8 @@ const Register = () => {
           },
           body: JSON.stringify({
             email: user.email,
+            userName: user?.displayName,
+            image: user?.photoURL,
             role: "user",
             status: "not verified",
           }),
@@ -85,7 +93,9 @@ const Register = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
-              alert("User Created Successfully");
+              toast.success("User Created Successfully", {
+                autoClose: 1500,
+              });
               setCreatedUserEmail(user?.email);
             }
           });

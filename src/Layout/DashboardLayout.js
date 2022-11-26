@@ -19,19 +19,19 @@ const DashboardLayout = () => {
         <Link to="/dashboard/view-all-product">Manage Product</Link>
       </li>
       <li>
-        <Link to="/dashboard/">All Buyer</Link>
+        <Link to="/dashboard/manage-users">Manage Users</Link>
       </li>
       <li>
-        <Link to="/dashboard/">All Seller</Link>
+        <Link to="/dashboard/manage-sellers">Manage Seller</Link>
       </li>
       <li>
-        <Link to="/dashboard/">Reported Items</Link>
+        <Link to="/dashboard/reported-products">Reported Items</Link>
       </li>
       <li>
-        <Link to="/dashboard/">My Orders</Link>
+        <Link to="/dashboard/myorders">My Orders</Link>
       </li>
       <li>
-        <Link to="/dashboard/">My Wishlist</Link>
+        <Link to="/dashboard/mywishlist">My Wishlist</Link>
       </li>
     </>
   );
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
             htmlFor="bikers-ocean-dashboard-drawer"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          <ul className="menu p-4 w-70  text-base-content border border-red-500">
             {menuItem}
           </ul>
         </div>

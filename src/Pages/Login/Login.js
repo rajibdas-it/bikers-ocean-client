@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
 import useToken from "../../Hooks/useToken";
@@ -44,6 +45,8 @@ const Login = () => {
           },
           body: JSON.stringify({
             email: user.email,
+            userName: user?.displayName,
+            image: user?.photoURL,
             role: "user",
             status: "not verified",
           }),
@@ -51,7 +54,9 @@ const Login = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
-              // alert("User Created Successfully");
+              toast.success("User Login Successfully", {
+                autoClose: 1500,
+              });
               setUserEmail(user?.email);
             }
           });
