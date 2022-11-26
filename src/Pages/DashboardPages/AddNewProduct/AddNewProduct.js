@@ -3,6 +3,7 @@ import moment from "moment/moment";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const AddNewProduct = () => {
   const { data: categories = [] } = useQuery({
@@ -10,9 +11,10 @@ const AddNewProduct = () => {
     queryFn: () =>
       fetch("http://localhost:5000/productCategory").then((res) => res.json()),
   });
-  console.log(categories);
+  // console.log(categories);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-  console.log(currentDate);
+  const navigate = useNavigate();
+  // console.log(currentDate);
   const { user } = useContext(AuthContext);
   const handleAddNewProduct = (event) => {
     event.preventDefault();
@@ -68,6 +70,7 @@ const AddNewProduct = () => {
                 toast.success("Product added Successfully", {
                   autoClose: 1500,
                 });
+                navigate("/dashboard/view-all-product");
               }
             });
         }

@@ -22,6 +22,7 @@ const Product = ({ productDetails }) => {
     sellerEmail,
     sellerPhone,
     sellingPrice,
+    status,
   } = productDetails;
 
   useEffect(() => {
@@ -75,6 +76,7 @@ const Product = ({ productDetails }) => {
             </div>
             <div className="badge badge-outline">Condition: {condition}</div>
             <div className="badge badge-outline">Location: {location}</div>
+            <div className="badge badge-outline">Status: {status}</div>
           </div>
           <p>{descriptions}</p>
           <div className="card-actions justify-end">
