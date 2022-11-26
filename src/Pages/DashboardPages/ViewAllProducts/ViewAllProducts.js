@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import moment from "moment/moment";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import Swal from "sweetalert2";
 
 const ViewAllProducts = () => {
   const { user } = useContext(AuthContext);
+  const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   const {
     data: products = [],
     isLoading,
@@ -21,7 +23,38 @@ const ViewAllProducts = () => {
   // console.log(products);
 
   const handleAdvertiseProduct = (product) => {
-    console.log("you apply this product for advertise", product);
+    // console.log("you apply this product for advertise", product);
+    const { _id, productName, status, image } = product;
+
+    const addvertiseProduct = {
+      date: currentDate,
+      productId: _id,
+      productName,
+      image,
+      status,
+    };
+    fetch("http://localhost:5000/createAdvertise", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addvertiseProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.upsertedCount > 0) {
+          toast.success("Product added on advertise section on home page", {
+            autoClose: 1500,
+          });
+        } else if (data.matchedCount > 0) {
+          toast.info(
+            "Product already added on advertise section. Please check.",
+            {
+              autoClose: 1500,
+            }
+          );
+        }
+      });
   };
 
   const handleDeleteProduct = (product) => {
