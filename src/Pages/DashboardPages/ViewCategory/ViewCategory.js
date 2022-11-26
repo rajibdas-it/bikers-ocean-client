@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
+import Swal from "sweetalert2";
 
 const ViewCategory = () => {
   const { user } = useContext(AuthContext);
@@ -15,7 +17,68 @@ const ViewCategory = () => {
   });
 
   const handleDeleteCategory = (id) => {
-    console.log("you want to delete this category", id);
+    Swal.fire({
+      title: "Are you sure, you want to delete this category?",
+      text: "Once deleted, you will not be able to recover this",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/categories/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              toast.success("Category Deleted Successfully.", {
+                autoClose: 1500,
+              });
+              refetch();
+            }
+          });
+      }
+    });
+    // console.log("you want to delete this category", id);
+    // Swal.fire("Your Delete Id", id);
+    // Swal.fire({
+    //   title: "Are you sure, You want to delete Category?",
+    //   text: "Once deleted, you will not be able to recover this category!",
+    //   icon: "warning",
+    //   buttons: [false, true],
+    // }).then((willDelete) => {
+    //   if (willDelete) {
+    // amr kajer jinish
+    //     fetch(`http://localhost:5000/categories/${id}`, {
+    //       method: "DELETE",
+    //     })
+    //       .then((res) => res.json())
+    //       .then((data) => {
+    //         if (data.deletedCount > 0) {
+    //           toast.success("Category Deleted Successfully.", {
+    //             autoClose: 1500,
+    //           });
+    //           refetch();
+    //         }
+    //       });
+    //Finished
+    //     // Swal.fire("success", `Your Category has been deleted! ${id}`);
+    //   } else {
+    //     Swal.fire("Your imaginary file is safe!");
+    //   }
+    // });
+    // fetch(`http://localhost:5000/categories/${id}`, {
+    //   method: "DELETE",
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.deletedCount > 0) {
+    //       toast.success("Category Deleted Successfully.", { autoClose: 1500 });
+    //       refetch();
+    //     }
+    //   });
   };
 
   // console.log(categories);

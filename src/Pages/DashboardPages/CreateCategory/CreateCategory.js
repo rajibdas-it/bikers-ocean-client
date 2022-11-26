@@ -1,10 +1,12 @@
 import React from "react";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CreateCategory = () => {
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-  console.log(currentDate);
+  const navigate = useNavigate();
+  // console.log(currentDate);
   const handleAddCategory = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -42,6 +44,7 @@ const CreateCategory = () => {
                 toast.success("Category Created Successfully", {
                   autoClose: 1500,
                 });
+                navigate("/dashboard/view-all-category");
               }
             });
         }
