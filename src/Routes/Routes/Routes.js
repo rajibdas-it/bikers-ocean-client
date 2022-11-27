@@ -19,6 +19,7 @@ import ManageUsers from "../../Pages/DashboardPages/ManageUsers/ManageUsers";
 import ManageSeller from "../../Pages/DashboardPages/ManageSeller/ManageSeller";
 import ReportedProducts from "../../Pages/DashboardPages/ReportedProducts/ReportedProducts";
 import Payment from "../../Pages/DashboardPages/Payment/Payment";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -71,11 +72,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/create-category",
-        element: <CreateCategory></CreateCategory>,
+        element: (
+          <AdminRoute>
+            <CreateCategory></CreateCategory>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/view-all-category",
-        element: <ViewCategory></ViewCategory>,
+        element: (
+          <AdminRoute>
+            <ViewCategory></ViewCategory>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/add-new-product",
@@ -87,11 +96,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manage-users",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/manage-sellers",
-        element: <ManageSeller></ManageSeller>,
+        element: (
+          <AdminRoute>
+            <ManageSeller></ManageSeller>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/reported-products",

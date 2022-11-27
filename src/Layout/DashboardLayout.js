@@ -1,32 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../Context/UserContext";
+import useAdmin from "../Hooks/useAdmin";
 import Header from "../Pages/Shared/Header/Header";
 
 const DashboardLayout = () => {
+  const { user } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+
   const menuItem = (
     <>
-      <li>
-        <Link to="/dashboard/create-category">Create Category</Link>
-      </li>
+      {isAdmin && (
+        <>
+          <li>
+            <Link to="/dashboard/create-category">Create Category</Link>
+          </li>
 
-      <li>
-        <Link to="/dashboard/view-all-category">Manage Category</Link>
-      </li>
+          <li>
+            <Link to="/dashboard/view-all-category">Manage Category</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/manage-users">Manage Users</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/manage-sellers">Manage Seller</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/reported-products">Reported Items</Link>
+          </li>
+        </>
+      )}
       <li>
         <Link to="/dashboard/add-new-product">Add Product</Link>
       </li>
       <li>
         <Link to="/dashboard/view-all-product">Manage Product</Link>
       </li>
-      <li>
-        <Link to="/dashboard/manage-users">Manage Users</Link>
-      </li>
-      <li>
-        <Link to="/dashboard/manage-sellers">Manage Seller</Link>
-      </li>
-      <li>
-        <Link to="/dashboard/reported-products">Reported Items</Link>
-      </li>
+
       <li>
         <Link to="/dashboard/myorders">My Orders</Link>
       </li>

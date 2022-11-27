@@ -33,6 +33,11 @@ const ReportedProducts = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/deletedReportedItem/${item.productId}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {

@@ -35,6 +35,11 @@ const ManageSeller = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/verifySeller/${seller._id}`, {
           method: "PATCH",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -66,6 +71,11 @@ const ManageSeller = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/users/${seller?._id}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
