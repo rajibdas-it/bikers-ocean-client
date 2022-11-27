@@ -8,11 +8,7 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const {
-    data: bookings = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: bookings = [], refetch } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: () =>
       fetch(`http://localhost:5000/bookings?email=${user?.email}`).then((res) =>

@@ -31,7 +31,7 @@ const ReportedProducts = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${item.productId}`, {
+        fetch(`http://localhost:5000/deletedReportedItem/${item.productId}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -63,6 +63,7 @@ const ReportedProducts = () => {
                 <th>Seller Name</th>
                 <th>Seller Email</th>
                 <th>Actions</th>
+                <th>Admin Comments</th>
               </tr>
             </thead>
             <tbody>
@@ -76,13 +77,16 @@ const ReportedProducts = () => {
                   <td>{item.sellerName}</td>
                   <td>{item.sellerEmail}</td>
                   <td>
-                    <button
-                      onClick={() => handleDeleteProduct(item)}
-                      className="btn btn-sm btn-primary"
-                    >
-                      remove
-                    </button>
+                    {!item.adminComments && (
+                      <button
+                        onClick={() => handleDeleteProduct(item)}
+                        className="btn btn-sm btn-primary"
+                      >
+                        remove
+                      </button>
+                    )}
                   </td>
+                  <td>{item.adminComments}</td>
                 </tr>
               ))}
             </tbody>
