@@ -5,16 +5,27 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Context/UserContext";
+import Loader from "../../Shared/Loader/Loader";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const { data: bookings = [], refetch } = useQuery({
+  const {
+    data: bookings = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/bookings?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   // console.log(bookings);
 
