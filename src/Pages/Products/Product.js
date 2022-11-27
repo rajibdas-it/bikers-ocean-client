@@ -109,7 +109,7 @@ const Product = ({ productDetails }) => {
 
   return (
     <div>
-      <div className="card w-full bg-base-100 shadow-xl">
+      <div className="card w-full h-[900px] bg-base-100 shadow-xl">
         <figure>
           <img src={image} alt="Shoes" className="w-full h-[400px]" />
         </figure>
@@ -154,13 +154,15 @@ const Product = ({ productDetails }) => {
             >
               <FaUserSecret className="h-8 w-8"></FaUserSecret>
             </button>
-            <label
-              htmlFor="order-modal"
-              className="btn btn-primary"
-              onClick={() => setBookingItem(productDetails)}
-            >
-              Book Now
-            </label>
+            {status === "available" && (
+              <label
+                htmlFor="order-modal"
+                className="btn btn-primary"
+                onClick={() => setBookingItem(productDetails)}
+              >
+                Book Now
+              </label>
+            )}
           </div>
         </div>
       </div>

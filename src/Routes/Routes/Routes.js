@@ -18,6 +18,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ManageUsers from "../../Pages/DashboardPages/ManageUsers/ManageUsers";
 import ManageSeller from "../../Pages/DashboardPages/ManageSeller/ManageSeller";
 import ReportedProducts from "../../Pages/DashboardPages/ReportedProducts/ReportedProducts";
+import Payment from "../../Pages/DashboardPages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -92,6 +93,12 @@ export const router = createBrowserRouter([
             <MyOrders></MyOrders>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
     ],
   },

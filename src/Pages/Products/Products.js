@@ -6,8 +6,7 @@ const Products = () => {
   const products = useLoaderData();
   // console.log(products);
   return (
-    <div>
-      <h1>This is product page of category </h1>
+    <div className="mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.map((productDetails) => (
           <Product

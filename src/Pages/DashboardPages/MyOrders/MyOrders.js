@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -63,29 +64,38 @@ const MyOrders = () => {
                 <th>Price</th>
                 <th>Seller Name</th>
                 <th>Seller Email</th>
+                {/* <th>Payment Status</th> */}
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {bookings.map((booking, i) => (
-                <tr key={booking._id}>
+                <tr key={booking?._id}>
                   <th>{i + 1}</th>
                   <td>{booking.productName}</td>
                   {/* <td>{booking.userName}</td>
                   <td>{booking.userEmail}</td> */}
-                  <td>{booking.price}</td>
-                  <td>{booking.sellerName}</td>
-                  <td>{booking.sellerEmail}</td>
+                  <td>{booking?.price}</td>
+                  <td>{booking?.sellerName}</td>
+                  <td>{booking?.sellerEmail}</td>
+                  {/* <td>{booking.status}</td> */}
                   <td>
-                    <button className="btn btn-sm btn-secondary mr-1">
-                      Pay
-                    </button>
-                    <button
-                      onClick={() => handleDeleteBooking(booking)}
-                      className="btn btn-sm btn-primary"
-                    >
-                      remove
-                    </button>
+                    {booking?.price && !booking?.paid && (
+                      <Link to={`/dashboard/payment/${booking?._id}`}>
+                        <button className="btn btn-sm btn-secondary mr-1">
+                          Pay
+                        </button>
+                      </Link>
+                    )}
+                    {booking?.price && booking?.paid && <span>Paid</span>}
+                    {!booking?.paid && (
+                      <button
+                        onClick={() => handleDeleteBooking(booking)}
+                        className="btn btn-sm btn-primary"
+                      >
+                        remove
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
