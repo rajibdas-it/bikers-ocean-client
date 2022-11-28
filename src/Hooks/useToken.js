@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 
 const useToken = (email) => {
   const [token, setToken] = useState("");
+  const [isUserLoading, setIsUserLoading] = useState(true);
 
   useEffect(() => {
+    setIsUserLoading(true);
     if (email) {
       fetch(`http://localhost:5000/jwt?email=${email}`)
         .then((res) => res.json())
@@ -11,11 +13,12 @@ const useToken = (email) => {
           if (data.accessToken) {
             localStorage.setItem("bikersOcean-token", data.accessToken);
             setToken(data.accessToken);
+            setIsUserLoading(false);
           }
         });
     }
   }, [email]);
-  return [token];
+  return [token, isUserLoading];
 };
 
 export default useToken;

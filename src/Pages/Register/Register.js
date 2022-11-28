@@ -11,7 +11,7 @@ const Register = () => {
     useContext(AuthContext);
   const [createdUserEmail, setCreatedUserEmail] = useState("");
   const navigate = useNavigate();
-  const [token] = useToken(createdUserEmail);
+  const [token, isUserLoading] = useToken(createdUserEmail);
 
   if (token) {
     navigate("/");

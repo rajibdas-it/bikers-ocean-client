@@ -32,7 +32,11 @@ const ViewCategory = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/categories/${id}`, {
           method: "DELETE",
-          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
