@@ -9,7 +9,9 @@ const AddNewProduct = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["category"],
     queryFn: () =>
-      fetch("http://localhost:5000/productCategory").then((res) => res.json()),
+      fetch("https://bikers-ocean-server.vercel.app/productCategory").then(
+        (res) => res.json()
+      ),
   });
   // console.log(categories);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -42,7 +44,7 @@ const AddNewProduct = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          fetch("http://localhost:5000/products", {
+          fetch("https://bikers-ocean-server.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -106,7 +108,7 @@ const AddNewProduct = () => {
                 className="select select-bordered w-full"
                 required
               >
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <option key={category?._id} value={category?._id}>
                     {category?.categoryName}
                   </option>

@@ -15,7 +15,7 @@ const ManageSeller = () => {
   } = useQuery({
     queryKey: ["sellers"],
     queryFn: () =>
-      fetch("http://localhost:5000/allSeller", {
+      fetch("https://bikers-ocean-server.vercel.app/allSeller", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
         },
@@ -37,14 +37,17 @@ const ManageSeller = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/verifySeller/${seller._id}`, {
-          method: "PATCH",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem(
-              "bikersOcean-token"
-            )}`,
-          },
-        })
+        fetch(
+          `https://bikers-ocean-server.vercel.app/verifySeller/${seller._id}`,
+          {
+            method: "PATCH",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem(
+                "bikersOcean-token"
+              )}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
@@ -73,7 +76,7 @@ const ManageSeller = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${seller?._id}`, {
+        fetch(`https://bikers-ocean-server.vercel.app/users/${seller?._id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem(
@@ -117,7 +120,7 @@ const ManageSeller = () => {
             </tr>
           </thead>
           <tbody>
-            {sellers.map((seller, i) => (
+            {sellers?.map((seller, i) => (
               <tr key={seller?._id}>
                 <td>{i + 1}</td>
                 {/* <td>
@@ -134,7 +137,7 @@ const ManageSeller = () => {
 
                 <td className="grid grid-cols-2 gap-2">
                   {/* <button className="btn-sm btn-info">Sold</button> */}
-                  {seller.status === "not verified" && (
+                  {seller?.status === "not verified" && (
                     <button
                       onClick={() => handleVerifySeller(seller)}
                       className="btn-sm btn-secondary"

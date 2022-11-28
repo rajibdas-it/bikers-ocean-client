@@ -15,7 +15,7 @@ const ReportedProducts = () => {
   } = useQuery({
     queryKey: ["reportedItems"],
     queryFn: () =>
-      fetch(`http://localhost:5000/reportedItems`, {
+      fetch(`https://bikers-ocean-server.vercel.app/reportedItems`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
         },
@@ -35,14 +35,17 @@ const ReportedProducts = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deletedReportedItem/${item.productId}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem(
-              "bikersOcean-token"
-            )}`,
-          },
-        })
+        fetch(
+          `https://bikers-ocean-server.vercel.app/deletedReportedItem/${item.productId}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem(
+                "bikersOcean-token"
+              )}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -76,17 +79,17 @@ const ReportedProducts = () => {
               </tr>
             </thead>
             <tbody>
-              {reportedProducts.map((item, i) => (
-                <tr key={item._id}>
+              {reportedProducts?.map((item, i) => (
+                <tr key={item?._id}>
                   <th>{i + 1}</th>
-                  <td>{item.userName}</td>
-                  <td>{item.userEmail}</td>
-                  <td>{item.productId}</td>
-                  <td>{item.productName}</td>
-                  <td>{item.sellerName}</td>
-                  <td>{item.sellerEmail}</td>
+                  <td>{item?.userName}</td>
+                  <td>{item?.userEmail}</td>
+                  <td>{item?.productId}</td>
+                  <td>{item?.productName}</td>
+                  <td>{item?.sellerName}</td>
+                  <td>{item?.sellerEmail}</td>
                   <td>
-                    {!item.adminComments && (
+                    {!item?.adminComments && (
                       <button
                         onClick={() => handleDeleteProduct(item)}
                         className="btn btn-sm btn-primary"
@@ -95,7 +98,7 @@ const ReportedProducts = () => {
                       </button>
                     )}
                   </td>
-                  <td>{item.adminComments}</td>
+                  <td>{item?.adminComments}</td>
                 </tr>
               ))}
             </tbody>

@@ -16,11 +16,16 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://bikers-ocean-server.vercel.app/bookings?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   if (isLoading) {
@@ -40,14 +45,17 @@ const MyOrders = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${booking._id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem(
-              "bikersOcean-token"
-            )}`,
-          },
-        })
+        fetch(
+          `https://bikers-ocean-server.vercel.app/bookings/${booking._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem(
+                "bikersOcean-token"
+              )}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -81,10 +89,10 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking, i) => (
+              {bookings?.map((booking, i) => (
                 <tr key={booking?._id}>
                   <th>{i + 1}</th>
-                  <td>{booking.productName}</td>
+                  <td>{booking?.productName}</td>
                   {/* <td>{booking.userName}</td>
                   <td>{booking.userEmail}</td> */}
                   <td>{booking?.price}</td>

@@ -33,7 +33,7 @@ const Product = ({ productDetails }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/verifyseller/${sellerEmail}`)
+      .get(`https://bikers-ocean-server.vercel.app/verifyseller/${sellerEmail}`)
       .then((res) => {
         setSellerInfo(res.data);
       });
@@ -65,7 +65,7 @@ const Product = ({ productDetails }) => {
       price: sellingPrice,
     };
 
-    fetch("http://localhost:5000/mywishlist", {
+    fetch("https://bikers-ocean-server.vercel.app/mywishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,15 +86,15 @@ const Product = ({ productDetails }) => {
   const handleReportToAdmin = (productDetails) => {
     const reportedItem = {
       date: currentDate,
-      productId: productDetails._id,
-      productName: productDetails.productName,
+      productId: productDetails?._id,
+      productName: productDetails?.productName,
       userName: user?.displayName,
       userEmail: user?.email,
-      sellerName: productDetails.sellerName,
-      sellerEmail: productDetails.sellerEmail,
+      sellerName: productDetails?.sellerName,
+      sellerEmail: productDetails?.sellerEmail,
     };
 
-    fetch("http://localhost:5000/reportedItems", {
+    fetch("https://bikers-ocean-server.vercel.app/reportedItems", {
       method: "POST",
       headers: {
         "content-type": "application/json",

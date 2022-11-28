@@ -15,11 +15,16 @@ const ViewAllProducts = () => {
   } = useQuery({
     queryKey: ["products", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?email=${user?.email}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://bikers-ocean-server.vercel.app/products?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   // console.log(products);
@@ -35,7 +40,7 @@ const ViewAllProducts = () => {
       image,
       status,
     };
-    fetch("http://localhost:5000/createAdvertise", {
+    fetch("https://bikers-ocean-server.vercel.app/createAdvertise", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -71,14 +76,17 @@ const ViewAllProducts = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${product?._id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem(
-              "bikersOcean-token"
-            )}`,
-          },
-        })
+        fetch(
+          `https://bikers-ocean-server.vercel.app/products/${product?._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem(
+                "bikersOcean-token"
+              )}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -120,7 +128,7 @@ const ViewAllProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, i) => (
+            {products?.map((product, i) => (
               <tr key={product?._id}>
                 <td>{i + 1}</td>
                 {/* <td>
@@ -139,7 +147,7 @@ const ViewAllProducts = () => {
 
                 <td className="grid grid-cols-2 gap-2">
                   {/* <button className="btn-sm btn-info">Sold</button> */}
-                  {product.status === "available" && (
+                  {product?.status === "available" && (
                     <button
                       onClick={() => handleAdvertiseProduct(product)}
                       className="btn-sm btn-secondary"

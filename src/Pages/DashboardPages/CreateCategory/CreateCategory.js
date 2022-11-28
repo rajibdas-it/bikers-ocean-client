@@ -26,7 +26,7 @@ const CreateCategory = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          fetch("http://localhost:5000/categories", {
+          fetch("https://bikers-ocean-server.vercel.app/categories", {
             method: "POST",
             headers: {
               "content-type": "application/json",

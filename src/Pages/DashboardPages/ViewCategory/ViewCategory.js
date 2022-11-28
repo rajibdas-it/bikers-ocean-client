@@ -13,7 +13,7 @@ const ViewCategory = () => {
   } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch("http://localhost:5000/categories", {
+      fetch("https://bikers-ocean-server.vercel.app/categories", {
         headers: {
           authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
         },
@@ -30,7 +30,7 @@ const ViewCategory = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/categories/${id}`, {
+        fetch(`https://bikers-ocean-server.vercel.app/categories/${id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem(
@@ -60,7 +60,7 @@ const ViewCategory = () => {
     // }).then((willDelete) => {
     //   if (willDelete) {
     // amr kajer jinish
-    //     fetch(`http://localhost:5000/categories/${id}`, {
+    //     fetch(`https://bikers-ocean-server.vercel.app/categories/${id}`, {
     //       method: "DELETE",
     //     })
     //       .then((res) => res.json())
@@ -78,7 +78,7 @@ const ViewCategory = () => {
     //     Swal.fire("Your imaginary file is safe!");
     //   }
     // });
-    // fetch(`http://localhost:5000/categories/${id}`, {
+    // fetch(`https://bikers-ocean-server.vercel.app/categories/${id}`, {
     //   method: "DELETE",
     // })
     //   .then((res) => res.json())
@@ -113,14 +113,14 @@ const ViewCategory = () => {
             </tr>
           </thead>
           <tbody>
-            {categories.map((category, i) => (
+            {categories?.map((category, i) => (
               <tr key={category._id}>
                 <th>{i + 1}</th>
-                <td>{category.categoryName}</td>
-                <td>{category.descriptions}</td>
+                <td>{category?.categoryName}</td>
+                <td>{category?.descriptions}</td>
                 <td>
                   <button
-                    onClick={() => handleDeleteCategory(category._id)}
+                    onClick={() => handleDeleteCategory(category?._id)}
                     className="btn-sm btn-primary"
                   >
                     Delete

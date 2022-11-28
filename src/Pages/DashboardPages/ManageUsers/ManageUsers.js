@@ -14,7 +14,7 @@ const ManageUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allUsers`, {
+      fetch(`https://bikers-ocean-server.vercel.app/allUsers`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
         },
@@ -38,7 +38,7 @@ const ManageUsers = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${user?._id}`, {
+        fetch(`https://bikers-ocean-server.vercel.app/users/${user?._id}`, {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${localStorage.getItem(
@@ -82,7 +82,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, i) => (
+            {users?.map((user, i) => (
               <tr key={user?._id}>
                 <td>{i + 1}</td>
                 {/* <td>

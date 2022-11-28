@@ -9,27 +9,23 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
-import one from "../../../assets/slider-img/cbr.png";
-import two from "../../../assets/slider-img/cbr.png";
-import three from "../../../assets/slider-img/cbr.png";
-import four from "../../../assets/slider-img/cbr.png";
-import five from "../../../assets/slider-img/cbr.png";
-import six from "../../../assets/slider-img/cbr.png";
-import seven from "../../../assets/slider-img/cbr.png";
+
 import { useQuery } from "@tanstack/react-query";
 
 const AddvertiseSlider = () => {
   const { data: addvertiseItem = [], isLoading } = useQuery({
     queryKey: ["AdvertiseProduct"],
     queryFn: () =>
-      fetch("http://localhost:5000/createAdvertise").then((res) => res.json()),
+      fetch("https://bikers-ocean-server.vercel.app/createAdvertise").then(
+        (res) => res.json()
+      ),
   });
 
   // console.log(addvertiseItem);
 
   return (
     <>
-      {addvertiseItem.length > 0 && (
+      {addvertiseItem?.length > 0 && (
         <div className=" my-16 border border-red-500">
           <h2 className="text-center font-bold text-4xl my-5">
             New Arrived
@@ -59,9 +55,9 @@ const AddvertiseSlider = () => {
             modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
             className="mySwiper"
           >
-            {addvertiseItem.map(
+            {addvertiseItem?.map(
               (item) =>
-                item.status === "available" && (
+                item?.status === "available" && (
                   <SwiperSlide key={item?._id}>
                     <img
                       className="h-[40vh] rounded"

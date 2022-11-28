@@ -14,11 +14,16 @@ const WishList = () => {
   } = useQuery({
     queryKey: ["wishlistItems", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/mywishlist?email=${user?.email}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://bikers-ocean-server.vercel.app/mywishlist?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   if (isLoading) {
@@ -36,14 +41,17 @@ const WishList = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/mywishlist/${wishedItem._id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem(
-              "bikersOcean-token"
-            )}`,
-          },
-        })
+        fetch(
+          `https://bikers-ocean-server.vercel.app/mywishlist/${wishedItem?._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem(
+                "bikersOcean-token"
+              )}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -76,13 +84,13 @@ const WishList = () => {
             </thead>
             <tbody>
               {items.map((item, i) => (
-                <tr key={item._id}>
+                <tr key={item?._id}>
                   <th>{i + 1}</th>
-                  <td>{item.productName}</td>
+                  <td>{item?.productName}</td>
                   {/* <td>{item.userName}</td>
                   <td>{item.userEmail}</td> */}
-                  <td>{item.price}</td>
-                  <td>{item.sellerEmail}</td>
+                  <td>{item?.price}</td>
+                  <td>{item?.sellerEmail}</td>
                   <td>
                     <button className="btn btn-sm btn-secondary mr-1" disabled>
                       Book & Pay now

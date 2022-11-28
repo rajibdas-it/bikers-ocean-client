@@ -7,12 +7,12 @@ const useToken = (email) => {
   useEffect(() => {
     setIsUserLoading(true);
     if (email) {
-      fetch(`http://localhost:5000/jwt?email=${email}`)
+      fetch(`https://bikers-ocean-server.vercel.app/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
-          if (data.accessToken) {
-            localStorage.setItem("bikersOcean-token", data.accessToken);
-            setToken(data.accessToken);
+          if (data?.accessToken) {
+            localStorage.setItem("bikersOcean-token", data?.accessToken);
+            setToken(data?.accessToken);
             setIsUserLoading(false);
           }
         });

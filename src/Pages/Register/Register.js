@@ -40,9 +40,9 @@ const Register = () => {
         if (imgData.success) {
           userRegistration(email, password)
             .then((result) => {
-              updateUserInfo(userName, imgData.data.url)
+              updateUserInfo(userName, imgData?.data?.url)
                 .then((result) => {
-                  fetch("http://localhost:5000/users", {
+                  fetch("https://bikers-ocean-server.vercel.app/users", {
                     method: "PUT",
                     headers: {
                       "content-type": "application/json",
@@ -77,7 +77,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        fetch("http://localhost:5000/users", {
+        fetch("https://bikers-ocean-server.vercel.app/users", {
           method: "PUT",
           headers: {
             "content-type": "application/json",
