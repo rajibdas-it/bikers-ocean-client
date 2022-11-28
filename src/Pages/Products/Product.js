@@ -76,7 +76,9 @@ const Product = ({ productDetails }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("Product added in your wishlist page.");
+          toast.success("Product added in your wishlist page.", {
+            autoClose: 1500,
+          });
           navigate("/mywishlist");
         }
       });
@@ -103,7 +105,7 @@ const Product = ({ productDetails }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("Reported to Admin.");
+          toast.success("Reported to Admin.", { autoClose: 1500 });
           navigate("/");
         }
       });

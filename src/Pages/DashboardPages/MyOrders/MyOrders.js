@@ -42,6 +42,11 @@ const MyOrders = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/bookings/${booking._id}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {

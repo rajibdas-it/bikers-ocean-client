@@ -15,9 +15,11 @@ const ViewAllProducts = () => {
   } = useQuery({
     queryKey: ["products", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(`http://localhost:5000/products?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   // console.log(products);
@@ -37,6 +39,7 @@ const ViewAllProducts = () => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
       },
       body: JSON.stringify(addvertiseProduct),
     })
@@ -70,6 +73,11 @@ const ViewAllProducts = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/products/${product?._id}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {

@@ -14,9 +14,11 @@ const WishList = () => {
   } = useQuery({
     queryKey: ["wishlistItems", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/mywishlist?email=${user?.email}`).then(
-        (res) => res.json()
-      ),
+      fetch(`http://localhost:5000/mywishlist?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   if (isLoading) {
@@ -36,6 +38,11 @@ const WishList = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/mywishlist/${wishedItem._id}`, {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "bikersOcean-token"
+            )}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -51,7 +58,7 @@ const WishList = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       <h1 className="text-center text-2xl font-bold my-5">Wishlist Items</h1>
       <div className="w-[90%] mx-auto">
         <div className="overflow-x-auto">
@@ -77,7 +84,7 @@ const WishList = () => {
                   <td>{item.price}</td>
                   <td>{item.sellerEmail}</td>
                   <td>
-                    <button className="btn btn-sm btn-secondary mr-1">
+                    <button className="btn btn-sm btn-secondary mr-1" disabled>
                       Book & Pay now
                     </button>
                     <button
