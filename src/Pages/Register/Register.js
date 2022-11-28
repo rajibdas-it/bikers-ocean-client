@@ -10,6 +10,7 @@ const Register = () => {
   const { userRegistration, googleSignIn, updateUserInfo, user } =
     useContext(AuthContext);
   const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
   const [token] = useToken(createdUserEmail);
 
@@ -20,6 +21,7 @@ const Register = () => {
   }, [token, navigate]);
 
   const handleUserSignUp = (event) => {
+    setErrorMsg("");
     event.preventDefault();
     const form = event.target;
     const userName = form.username.value;
@@ -68,13 +70,18 @@ const Register = () => {
                       }
                     });
                 })
-                .catch((err) => console.log(err));
+                .catch((error) => {
+                  setErrorMsg(error.message);
+                });
             })
-            .catch((err) => console.log(err));
+            .catch((error) => {
+              setErrorMsg(error.message);
+            });
         }
       });
   };
   const handleGooleSignUp = () => {
+    setErrorMsg("");
     googleSignIn()
       .then((result) => {
         const user = result.user;
@@ -102,7 +109,9 @@ const Register = () => {
             }
           });
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        setErrorMsg(error.message);
+      });
   };
   // console.log(user);
 
@@ -115,6 +124,26 @@ const Register = () => {
         </figure>
         <div className="items-center text-center p-5">
           <h2 className="text-center text-3xl font-bold">Register!</h2>
+          {errorMsg && (
+            <div className="alert alert-error shadow-lg">
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="stroke-current flex-shrink-0 h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{errorMsg}</span>
+              </div>
+            </div>
+          )}
           <form onSubmit={handleUserSignUp}>
             <div className="form-control w-full">
               <label className="label">
