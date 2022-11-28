@@ -1,16 +1,27 @@
 import React from "react";
+import bannerImg from "../../../assets/banner_img.webp";
 
 const Banner = () => {
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl">
-      <figure className="w-1/2 rounded-none">
-        <img src="https://placeimg.com/400/400/arch" alt="Album" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">New album is released!</h2>
-        <p>Click the button to listen on Spotiwhy app.</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Listen</button>
+    <div
+      className="hero w-full h-[400px]"
+      style={{
+        backgroundImage: `url(${bannerImg})`,
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(0,0,0,0.5)",
+        backgroundBlendMode: "overlay",
+      }}
+    >
+      <div className="hero-content text-center">
+        <div className="text-white max-w-md">
+          <h1 className="text-5xl font-bold text-primary">Bikers Ocean</h1>
+          <p className="py-6">
+            Best Online Bike Reseller Website in Bangladesh.
+          </p>
+          <p className="">A journey that never ends!</p>
+          <p className="text-xl">
+            Ride it! Love it! Live it! Ride steady and safe. Ride with us.
+          </p>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/bo_logo.png";
@@ -11,11 +11,13 @@ const Register = () => {
     useContext(AuthContext);
   const [createdUserEmail, setCreatedUserEmail] = useState("");
   const navigate = useNavigate();
-  const [token, isUserLoading] = useToken(createdUserEmail);
+  const [token] = useToken(createdUserEmail);
 
-  if (token) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   const handleUserSignUp = (event) => {
     event.preventDefault();

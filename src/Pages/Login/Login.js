@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [userEmail, setUserEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [token] = useToken(userEmail);
   const from = location.state?.from?.pathname || "/";
 
@@ -27,7 +28,7 @@ const Login = () => {
     const password = form.password.value;
     userLogin(email, password)
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         setUserEmail(email);
       })
       .catch((err) => console.log(err));
