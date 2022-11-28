@@ -2,8 +2,10 @@ import React from "react";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../../Hooks/useTitle";
 
 const CreateCategory = () => {
+  useTitle("Dashboard - Add Category");
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   const navigate = useNavigate();
   // console.log(currentDate);

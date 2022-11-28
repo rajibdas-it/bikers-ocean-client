@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import Swal from "sweetalert2";
 import Loader from "../../Shared/Loader/Loader";
+import useTitle from "../../../Hooks/useTitle";
 
 const ManageUsers = () => {
+  useTitle("Dashboard - Manage User");
   const { user } = useContext(AuthContext);
   const {
     data: users = [],

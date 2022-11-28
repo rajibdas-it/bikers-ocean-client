@@ -3,8 +3,10 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import Swal from "sweetalert2";
+import useTitle from "../../../Hooks/useTitle";
 
 const ViewCategory = () => {
+  useTitle("Dashboard - Manage Category");
   const { user } = useContext(AuthContext);
   const {
     data: categories = [],

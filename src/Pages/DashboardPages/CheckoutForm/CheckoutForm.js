@@ -1,8 +1,10 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import useTitle from "../../../Hooks/useTitle";
 
 const CheckoutForm = ({ booking }) => {
+  useTitle("Dashboard - Payment");
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState(false);

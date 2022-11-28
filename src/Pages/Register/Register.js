@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
+import useTitle from "../../Hooks/useTitle";
 import useToken from "../../Hooks/useToken";
 import Loader from "../Shared/Loader/Loader";
 
 const Register = () => {
+  useTitle("Register");
   const { userRegistration, googleSignIn, updateUserInfo, user } =
     useContext(AuthContext);
   const [createdUserEmail, setCreatedUserEmail] = useState("");

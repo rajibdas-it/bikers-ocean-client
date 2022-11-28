@@ -4,8 +4,10 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Context/UserContext";
+import useTitle from "../../../Hooks/useTitle";
 
 const ReportedProducts = () => {
+  useTitle("Dashboard - Reported Item");
   const { user } = useContext(AuthContext);
 
   const {

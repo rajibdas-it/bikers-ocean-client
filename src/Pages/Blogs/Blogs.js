@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import author_img from "../../assets/rajib.jpeg";
+import useTitle from "../../Hooks/useTitle";
 
 const Blogs = () => {
+  useTitle("Blogs");
   return (
     <div>
       <div className="w-[80%] mx-auto mt-10 mb-10">

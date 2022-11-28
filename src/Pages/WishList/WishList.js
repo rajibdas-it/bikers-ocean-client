@@ -4,8 +4,10 @@ import { AuthContext } from "../../Context/UserContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Loader from "../Shared/Loader/Loader";
+import useTitle from "../../Hooks/useTitle";
 
 const WishList = () => {
+  useTitle("Wishlist");
   const { user } = useContext(AuthContext);
   const {
     data: items = [],

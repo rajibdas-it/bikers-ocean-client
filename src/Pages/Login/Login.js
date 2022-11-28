@@ -3,9 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/bo_logo.png";
 import { AuthContext } from "../../Context/UserContext";
+import useTitle from "../../Hooks/useTitle";
 import useToken from "../../Hooks/useToken";
 
 const Login = () => {
+  useTitle("Login");
   const { googleSignIn, userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();

@@ -4,8 +4,10 @@ import moment from "moment/moment";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import Swal from "sweetalert2";
+import useTitle from "../../../Hooks/useTitle";
 
 const ViewAllProducts = () => {
+  useTitle("Dashboard - Manage Product");
   const { user } = useContext(AuthContext);
   const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   const {

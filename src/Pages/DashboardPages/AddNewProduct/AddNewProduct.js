@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../../Hooks/useTitle";
 
 const AddNewProduct = () => {
+  useTitle("Dashboard - Add Product");
   const { data: categories = [] } = useQuery({
     queryKey: ["category"],
     queryFn: () =>

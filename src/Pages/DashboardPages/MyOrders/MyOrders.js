@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Context/UserContext";
+import useTitle from "../../../Hooks/useTitle";
 import Loader from "../../Shared/Loader/Loader";
 
 const MyOrders = () => {
+  useTitle("Dashboard - My Orders");
   const { user } = useContext(AuthContext);
   const {
     data: bookings = [],
