@@ -30,6 +30,9 @@ const CreateCategory = () => {
             method: "POST",
             headers: {
               "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem(
+                "bikersOcean-token"
+              )}`,
             },
             body: JSON.stringify({
               date: currentDate,

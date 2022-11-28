@@ -13,7 +13,11 @@ const ViewCategory = () => {
   } = useQuery({
     queryKey: ["categories"],
     queryFn: () =>
-      fetch("http://localhost:5000/categories").then((res) => res.json()),
+      fetch("http://localhost:5000/categories", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   const handleDeleteCategory = (id) => {
@@ -28,6 +32,7 @@ const ViewCategory = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/categories/${id}`, {
           method: "DELETE",
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
         })
           .then((res) => res.json())
           .then((data) => {

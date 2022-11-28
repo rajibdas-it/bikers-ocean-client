@@ -69,6 +69,7 @@ const Product = ({ productDetails }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
       },
       body: JSON.stringify(wishedItem),
     })
@@ -95,6 +96,7 @@ const Product = ({ productDetails }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
       },
       body: JSON.stringify(reportedItem),
     })

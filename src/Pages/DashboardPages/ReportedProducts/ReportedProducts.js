@@ -15,7 +15,11 @@ const ReportedProducts = () => {
   } = useQuery({
     queryKey: ["reportedItems"],
     queryFn: () =>
-      fetch(`http://localhost:5000/reportedItems`).then((res) => res.json()),
+      fetch(`http://localhost:5000/reportedItems`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   // console.log(reportedProducts);

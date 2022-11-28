@@ -15,7 +15,11 @@ const ManageSeller = () => {
   } = useQuery({
     queryKey: ["sellers"],
     queryFn: () =>
-      fetch("http://localhost:5000/allSeller").then((res) => res.json()),
+      fetch("http://localhost:5000/allSeller", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   if (isLoading) {

@@ -14,7 +14,11 @@ const ManageUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allUsers`).then((res) => res.json()),
+      fetch(`http://localhost:5000/allUsers`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("bikersOcean-token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   //   console.log(users);
