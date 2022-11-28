@@ -31,8 +31,12 @@ const Header = () => {
           {/* <li>
             <Link to="/myorders">My Orders</Link>
           </li> */}
+
           <li>
             <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <p className="text-xl font-bold">{user?.displayName}</p>
           </li>
         </>
       )}
@@ -49,7 +53,7 @@ const Header = () => {
     </>
   );
   return (
-    <div className="navbar border border-green-600 ">
+    <div className="navbar">
       <div className="navbar-start lg:navbar-center">
         <div className="dropdown">
           <label tabIndex={1} className="btn btn-ghost lg:hidden">

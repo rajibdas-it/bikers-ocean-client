@@ -26,7 +26,7 @@ const AddvertiseSlider = () => {
   return (
     <>
       {addvertiseItem?.length > 0 && (
-        <div className=" my-16 border border-red-500">
+        <div className=" my-16">
           <h2 className="text-center font-bold text-4xl my-5">
             New Arrived
             <span className="badge badge-lg text-primary">Hot Collections</span>

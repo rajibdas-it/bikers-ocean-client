@@ -66,7 +66,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full md:w-96 lg:h-[800px] border border-red-500 mx-auto mt-5">
+    <div className="w-full md:w-96 lg:h-[800px]  mx-auto mt-5">
       <div className="card w-full bg-base-100 shadow-xl mx-auto my-10 m-2">
         <figure className="px-10">
           <img src={logo} alt="bikers-ocean" className="rounded-xl h-28 w-28" />
