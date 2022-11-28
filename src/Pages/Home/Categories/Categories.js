@@ -12,11 +12,11 @@ const Categories = () => {
       ),
   });
 
-  if (isLoading) {
-    return <Loader></Loader>;
-  }
+  // if (isLoading) {
+  //   return <Loader></Loader>;
+  // }
   return (
-    <div className="my-10">
+    <div className="my-10 lg:my-32">
       <h1 className="text-center text-4xl font-bold mb-10">Category</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {categories?.map((category) => (

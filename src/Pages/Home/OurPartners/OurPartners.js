@@ -7,14 +7,34 @@ import tvs from "../../../assets/partner_img/tvs.png";
 
 const OurPartners = () => {
   return (
-    <div className="my-5">
+    <div className="my-10 lg:my-32">
       <h1 className="text-center text-4xl font-bold">Our Partner</h1>
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 justify-around items-center">
-        <img src={hero} alt="" className="w-40 w-40" />
-        <img src={honda} alt="" className="w-40 w-40" />
-        <img src={aprilia} alt="" className="w-40 w-40" />
-        <img src={suzuki} alt="" className="w-40 w-40" />
-        <img src={tvs} alt="" className="w-40 w-40" />
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 justify-center items-center">
+        <div className="card w-full bg-neutral text-neutral-content">
+          <div className="card-body items-center text-center">
+            <img src={honda} alt="" className="w-40 w-40" />
+          </div>
+        </div>
+        <div className="card w-full bg-neutral text-neutral-content">
+          <div className="card-body items-center text-center">
+            <img src={hero} alt="" className="w-40 w-40" />
+          </div>
+        </div>
+        <div className="card w-full bg-neutral text-neutral-content">
+          <div className="card-body items-center text-center">
+            <img src={suzuki} alt="" className="w-40 w-40" />
+          </div>
+        </div>
+        <div className="card w-full bg-neutral text-neutral-content">
+          <div className="card-body items-center text-center">
+            <img src={tvs} alt="" className="w-40 w-40" />
+          </div>
+        </div>
+        <div className="card w-full bg-neutral text-neutral-content">
+          <div className="card-body items-center text-center">
+            <img src={aprilia} alt="" className="w-40 w-40" />
+          </div>
+        </div>
       </div>
     </div>
   );

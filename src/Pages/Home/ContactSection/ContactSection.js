@@ -18,7 +18,7 @@ const ContactSection = () => {
     >
       <div className="grid grid-cols-1 my-10 mx-2">
         <div className="grid grid-cols-1 md:grid-cols-2 border border-white mt-2">
-          <div className="card w-full  mt-2 shadow-sm rounded-none">
+          <div className="card w-full  border-y md:border-x border-white shadow-sm rounded-none">
             <figure className="px-10 pt-10">
               <FaPhoneAlt className="h-10 w-10 text-primary"></FaPhoneAlt>
             </figure>

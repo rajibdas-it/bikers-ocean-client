@@ -25,11 +25,11 @@ const Blogs = () => {
               </div>
               <p className="text-base text-gray-700 md:text-lg text-justify">
                 <span className="text-2xl font-bold italic">
-                  React State: <br />
-                  React's useState is the best option for local state
-                  management. If we need a global state solution, the most
-                  popular ones are <br />
+                  State Management: <br />
                 </span>{" "}
+                State management in React's, useState is the best option for
+                local state management. If we need a global state solution, the
+                most popular ones are <br />
                 <span className="font-bold">1. Context API</span> <br />
                 <span className="font-bold">2. Redux</span> <br />
                 <span className="font-bold">3. MobX</span> <br />

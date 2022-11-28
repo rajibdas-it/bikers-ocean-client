@@ -35,8 +35,9 @@ const Header = () => {
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
+
           <li>
-            <p className="text-xl font-bold">{user?.displayName}</p>
+            <p>Welcome, {user?.displayName}</p>
           </li>
         </>
       )}

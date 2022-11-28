@@ -72,7 +72,7 @@ const DashboardLayout = () => {
             className="drawer-overlay"
           ></label>
 
-          <ul className="menu p-4 w-70  text-base-content border border-red-500">
+          <ul className="menu p-4 w-70 text-base-content">
             {/* <h1>raib</h1> */}
             {menuItem}
           </ul>

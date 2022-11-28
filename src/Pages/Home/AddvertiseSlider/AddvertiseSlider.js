@@ -24,7 +24,7 @@ const AddvertiseSlider = () => {
   // console.log(addvertiseItem);
 
   return (
-    <>
+    <div className="my-10 lg:my-32">
       {addvertiseItem?.length > 0 && (
         <div className=" my-16">
           <h2 className="text-center font-bold text-4xl my-5">
@@ -70,7 +70,7 @@ const AddvertiseSlider = () => {
           </Swiper>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
