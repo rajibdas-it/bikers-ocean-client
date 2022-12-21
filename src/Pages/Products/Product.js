@@ -110,66 +110,68 @@ const Product = ({ productDetails }) => {
         }
       });
   };
-
+  // status === "available"
   return (
     <div>
-      <div className="card w-full h-[900px] bg-base-100 shadow-xl">
-        <figure>
-          <img src={image} alt="Shoes" className="w-full h-[400px]" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{productName}</h2>
-          <p>
-            <small>{date}</small>
-          </p>
-          <h2 className="card-title">
-            {sellerName}
-            <div className="badge badge-secondary">{sellerInfo.status}</div>
-            {/* <div className="badge badge-secondary">Cell: {sellerPhone}</div> */}
-          </h2>
-          <div className="grid grid-cols-1 gap-2 justify-start">
-            <div className="badge badge-outline">Cell: {sellerPhone}</div>
-            <div className="badge badge-outline">
-              Buying Price: ${buyingPrice}
+      {status === "available" && (
+        <div className="card w-full h-[900px] bg-base-100 shadow-xl">
+          <figure>
+            <img src={image} alt="Shoes" className="w-full h-[400px]" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{productName}</h2>
+            <p>
+              <small>{date}</small>
+            </p>
+            <h2 className="card-title">
+              {sellerName}
+              <div className="badge badge-secondary">{sellerInfo.status}</div>
+              {/* <div className="badge badge-secondary">Cell: {sellerPhone}</div> */}
+            </h2>
+            <div className="grid grid-cols-1 gap-2 justify-start">
+              <div className="badge badge-outline">Cell: {sellerPhone}</div>
+              <div className="badge badge-outline">
+                Buying Price: ${buyingPrice}
+              </div>
+              <div className="badge badge-outline">
+                Sale Price: ${sellingPrice}
+              </div>
+              <div className="badge badge-outline">
+                Purchase Year: {purchaseYear}
+              </div>
+              <div className="badge badge-outline">Condition: {condition}</div>
+              <div className="badge badge-outline">Location: {location}</div>
+              <div className="badge badge-outline">Status: {status}</div>
             </div>
-            <div className="badge badge-outline">
-              Sale Price: ${sellingPrice}
-            </div>
-            <div className="badge badge-outline">
-              Purchase Year: {purchaseYear}
-            </div>
-            <div className="badge badge-outline">Condition: {condition}</div>
-            <div className="badge badge-outline">Location: {location}</div>
-            <div className="badge badge-outline">Status: {status}</div>
-          </div>
-          <p>{descriptions}</p>
-          <div className="card-actions justify-end">
-            <button
-              onClick={() => handleAddWishList(productDetails)}
-              className="btn btn-secondary"
-              title="Wishlist"
-            >
-              <FaHeart className="h-6 w-6 text-orange-400"></FaHeart>
-            </button>
-            <button
-              onClick={() => handleReportToAdmin(productDetails)}
-              className="btn btn-secondary"
-              title="Report To Admin"
-            >
-              <FaUserSecret className="h-8 w-8"></FaUserSecret>
-            </button>
-            {status === "available" && (
-              <label
-                htmlFor="order-modal"
-                className="btn btn-primary"
-                onClick={() => setBookingItem(productDetails)}
+            <p>{descriptions}</p>
+            <div className="card-actions justify-end">
+              <button
+                onClick={() => handleAddWishList(productDetails)}
+                className="btn btn-secondary"
+                title="Wishlist"
               >
-                Book Now
-              </label>
-            )}
+                <FaHeart className="h-6 w-6 text-orange-400"></FaHeart>
+              </button>
+              <button
+                onClick={() => handleReportToAdmin(productDetails)}
+                className="btn btn-secondary"
+                title="Report To Admin"
+              >
+                <FaUserSecret className="h-8 w-8"></FaUserSecret>
+              </button>
+              {status === "available" && (
+                <label
+                  htmlFor="order-modal"
+                  className="btn btn-primary"
+                  onClick={() => setBookingItem(productDetails)}
+                >
+                  Book Now
+                </label>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
       {bookingItem && (
         <OrderModal
           bookingItem={bookingItem}
