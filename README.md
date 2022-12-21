@@ -4,6 +4,10 @@
 
 ### Live Website URL: [https://bikers-ocean.web.app/](https://bikers-ocean.web.app/)
 
+#### Admin Login: 
+- email: admin@bikersocean.com
+- password: 123456
+
 #### User Role
 
 - Client side develop by react js
